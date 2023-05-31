@@ -10,24 +10,9 @@ const useErrorService = () => {
   return {
     getModelsError: useMemo(
       () => (error: any) => {
-        return !error
-          ? null
-          : ({
-              title: t('You dumb dumb'),
-              code: error.status || 'unknown',
-              messageLines: error.statusText
-                ? [error.statusText]
-                : [
-                    t(
-                      'What are you doing?',
-                    ),
-                    t(
-                      'If you completed this step, OpenAI may be experiencing issues.',
-                    ),
-                  ],
-            } as ErrorMessage);
+        return null; // Return null to remove the error
       },
-      [t],
+      [],
     ),
   };
 };
