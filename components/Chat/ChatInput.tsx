@@ -325,7 +325,7 @@ export const ChatInput = ({
               }`,
             }}
             placeholder={
-              t('Type a message or type "/" to select a prompt...') || ''
+              t('Type a message to YashAI...') || ''
             }
             value={content}
             rows={1}
@@ -390,7 +390,7 @@ export const ChatInput = ({
         </a>
         .{' '}
         {t(
-          "YashAI",
+          "YashAI is a powerful chatbot tool.",
         )}
       </div>
     </div>
