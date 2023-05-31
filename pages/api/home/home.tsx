@@ -360,8 +360,8 @@ const Home = ({
       }}
     >
       <Head>
-        <title>Chatbot UI</title>
-        <meta name="description" content="ChatGPT but better." />
+        <title>YashAI</title>
+        <meta name="description" content="A powerful GPT-4 tool powered by YashAI v1.5" />
         <meta
           name="viewport"
           content="height=device-height ,width=device-width, initial-scale=1, user-scalable=no"
