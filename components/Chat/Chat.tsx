@@ -356,14 +356,11 @@ export const Chat = memo(({ stopConversationRef }: Props) => {
           </div>
           <div className="text-center text-lg text-black dark:text-white">
             <div className="mb-8">{`YashAI helps you interact with GPT-4 and YashAI v1.5`}</div>
-            <div className="mb-2 font-bold">
-              Important: YashAI is 100% unaffiliated with OpenAI.
-            </div>
+     
           </div>
           <div className="text-center text-gray-500 dark:text-gray-400">
             <div className="mb-2">
-              YashAI allows you to plug in your API key to use this UI with
-              their API.
+              You need an access key to use YashAI
             </div>
             <div className="mb-2">
               It is <span className="italic">only</span> used to communicate
@@ -371,13 +368,13 @@ export const Chat = memo(({ stopConversationRef }: Props) => {
             </div>
             <div className="mb-2">
               {t(
-                'Please set your OpenAI API key in the bottom left of the sidebar.',
+                'Please set your YashAI key in the bottom left of the sidebar.',
               )}
             </div>
             <div>
-              {t("If you don't have an OpenAI API key, you can get one here: ")}
+              {t("If you don't have a YashAI key, you can get one by contacting the developer. ")}
               <a
-                href="https://platform.openai.com/account/api-keys"
+                href="https://yashai.vercel.app"
                 target="_blank"
                 rel="noreferrer"
                 className="text-blue-500 hover:underline"
