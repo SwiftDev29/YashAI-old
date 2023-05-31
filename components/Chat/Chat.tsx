@@ -364,7 +364,7 @@ export const Chat = memo(({ stopConversationRef }: Props) => {
             </div>
             <div className="mb-2">
               It is <span className="italic">only</span> used to communicate
-              with their API.
+              with YashAI.
             </div>
             <div className="mb-2">
               {t(
@@ -372,14 +372,14 @@ export const Chat = memo(({ stopConversationRef }: Props) => {
               )}
             </div>
             <div>
-              {t("If you don't have a YashAI key, you can get one by contacting the developer. ")}
+              {t("If you don't have a YashAI key, you can get one by contacting the developer ")}
               <a
                 href="https://yashai.vercel.app"
                 target="_blank"
                 rel="noreferrer"
                 className="text-blue-500 hover:underline"
               >
-                openai.com
+                Yash Sinha
               </a>
             </div>
           </div>
