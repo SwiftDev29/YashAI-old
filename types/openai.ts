@@ -32,7 +32,7 @@ export const OpenAIModels: Record<OpenAIModelID, OpenAIModel> = {
   },
   [OpenAIModelID.GPT_4]: {
     id: OpenAIModelID.GPT_4,
-    name: 'YashAI v1.6 + GPT-4',
+    name: 'YashAI v1.5 + GPT-4',
     maxLength: 24000,
     tokenLimit: 8000,
   },
