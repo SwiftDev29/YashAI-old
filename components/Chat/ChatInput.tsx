@@ -390,10 +390,10 @@ export const ChatInput = ({
   </a>
   .{" "}
   {t(
-    "YashAI is a powerful LLM tool. For image generation ",
+    "YashAI is a powerful LLM tool. For YashAI Image Generation ",
   )}
   <a
-    href="https://your-image-generator-app.example.com"
+    href="https://yashai-image.vercel.app"
     target="_blank"
     rel="noreferrer"
     className="underline"
