@@ -370,29 +370,37 @@ export const ChatInput = ({
           )}
 
           {isModalVisible && (
-            <VariableModal
-              prompt={filteredPrompts[activePromptIndex]}
-              variables={variables}
-              onSubmit={handleSubmit}
-              onClose={() => setIsModalVisible(false)}
-            />
-          )}
-        </div>
-      </div>
-      <div className="px-3 pt-2 pb-3 text-center text-[12px] text-black/50 dark:text-white/50 md:px-4 md:pt-3 md:pb-6">
-        <a
-          href=""
-          target="_blank"
-          rel="noreferrer"
-          className="underline"
-        >
-          Yash AI
-        </a>
-        .{' '}
-        {t(
-          "YashAI is a powerful chatbot tool.",
-        )}
-      </div>
-    </div>
-  );
-};
+  <VariableModal
+    prompt={filteredPrompts[activePromptIndex]}
+    variables={variables}
+    onSubmit={handleSubmit}
+    onClose={() => setIsModalVisible(false)}
+  />
+)}
+</div>
+</div>
+<div className="px-3 pt-2 pb-3 text-center text-[12px] text-black/50 dark:text-white/50 md:px-4 md:pt-3 md:pb-6">
+  <a
+    href=""
+    target="_blank"
+    rel="noreferrer"
+    className="underline"
+  >
+    Yash AI
+  </a>
+  .{" "}
+  {t(
+    "YashAI is a powerful LLM tool. For image generation ",
+  )}
+  <a
+    href="https://your-image-generator-app.example.com"
+    target="_blank"
+    rel="noreferrer"
+    className="underline"
+  >
+    click here
+  </a>
+  .
+</div>
+</div>
+);
