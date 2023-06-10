@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import SidebarActionButton from './SidebarActionButton';
+import SidebarActionButton from '@/components/Buttons/SidebarActionButton';
 
 interface Props {
   imageGeneratorURL: string;
