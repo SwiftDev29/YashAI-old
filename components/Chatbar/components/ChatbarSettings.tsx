@@ -13,6 +13,7 @@ import { SidebarButton } from '../../Sidebar/SidebarButton';
 import ChatbarContext from '../Chatbar.context';
 import { ClearConversations } from './ClearConversations';
 import { PluginKeys } from './PluginKeys';
+import { ImageGeneratorButton } from './ImageGeneratorButton';
 
 export const ChatbarSettings = () => {
   const { t } = useTranslation('sidebar');
@@ -55,6 +56,8 @@ export const ChatbarSettings = () => {
         icon={<IconSettings size={18} />}
         onClick={() => setIsSettingDialog(true)}
       />
+      
+      <ImageGeneratorButton imageGeneratorURL="https://your-image-generator-app.example.com" />
 
       {!serverSideApiKeyIsSet ? (
         <Key apiKey={apiKey} onApiKeyChange={handleApiKeyChange} />
