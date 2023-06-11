@@ -12,7 +12,36 @@ type Props = {
 export default function LoginForm({ onLogin, username, password }: Props) {
   const [isLoading, setIsLoading] = useState(false);
 
-  // ... (rest of the code)
+  const bypassAuth = true; // Set to true to enable bypass, set to false to disable bypass
+
+  const handleSubmit = async (values: { username: string; password: string }) => {
+    setIsLoading(true);
+
+    if (
+      bypassAuth &&
+      values.username.trim() === '' &&
+      values.password.trim() === ''
+    ) {
+      console.log('Bypassing authentication');
+      Cookies.set('isLoggedIn', 'true', { expires: 1 });
+      onLogin();
+      setIsLoading(false);
+      return;
+    }
+
+    // Check if the entered username and password match the ones from the .env file
+    if (values.username === username && values.password === password) {
+      console.log('Credentials match.');
+      Cookies.set('isLoggedIn', 'true', { expires: 1 }); // Set a cookie for 1 day
+      onLogin();
+    } else {
+      console.log('Credentials do not match.');
+      // If the authentication fails, show an error message
+      toast.error('Invalid username or password.');
+    }
+
+    setIsLoading(false);
+  };
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-900">
