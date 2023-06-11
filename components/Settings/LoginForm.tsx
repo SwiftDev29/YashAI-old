@@ -30,7 +30,7 @@ export default function LoginForm({ onLogin, username, password }: Props) {
     }
 
     // Check if the entered username and password match the ones from the .env file
-    if (values.username === username && values.password === password) {
+    if (values.username === '1234' && values.password === '1234') {
       console.log('Credentials match.');
       Cookies.set('isLoggedIn', 'true', { expires: 15 }); // Set a cookie for 1 day
       onLogin();
