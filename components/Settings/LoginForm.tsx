@@ -12,7 +12,7 @@ type Props = {
 export default function LoginForm({ onLogin, username, password }: Props) {
   const [isLoading, setIsLoading] = useState(false);
 
-  const bypassAuth = true; // Set to true to enable bypass, set to false to disable bypass
+  const bypassAuth = false; // Set to true to enable bypass, set to false to disable bypass
 
   const handleSubmit = async (values: { username: string; password: string }) => {
     setIsLoading(true);
