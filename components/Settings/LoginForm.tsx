@@ -9,6 +9,12 @@ type Props = {
   password: string | undefined;
 };
 
+const validCredentials = [
+  { username: 'YASHAIUSER', password: '@YASHAIUSER29' },
+  { username: 'SECONDUSER', password: 'SECONDUSERPASS' },
+  // Add more valid username/password combinations here
+];
+
 export default function LoginForm({ onLogin, username, password }: Props) {
   const [isLoading, setIsLoading] = useState(false);
 
@@ -30,18 +36,23 @@ export default function LoginForm({ onLogin, username, password }: Props) {
     }
 
     // Check if the entered username and password match the ones from the .env file
-    if (values.username === 'YASHAIUSER' && values.password === '@YASHAIUSER29') {
-      console.log('Credentials match.');
-      Cookies.set('isLoggedIn', 'true', { expires: 15 }); // Set a cookie for 1 day
-      onLogin();
-    } else {
-      console.log('Credentials do not match.');
-      // If the authentication fails, show an error message
-      toast.error('Invalid username or password.');
-    }
+    const isAuthenticated = validCredentials.some(
+    (cred) =>
+      cred.username === values.username && cred.password === values.password
+  );
 
-    setIsLoading(false);
-  };
+  if (isAuthenticated) {
+    console.log('Credentials match.');
+    Cookies.set('isLoggedIn', 'true', { expires: 15 }); // Set a cookie for 1 day
+    onLogin();
+  } else {
+    console.log('Credentials do not match.');
+    // If the authentication fails, show an error message
+    toast.error('Invalid username or password.');
+  }
+
+  setIsLoading(false);
+};
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-900">
