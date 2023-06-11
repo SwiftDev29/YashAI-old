@@ -1,4 +1,9 @@
-import { IconClearAll, IconSettings } from '@tabler/icons-react';
+import {
+  IconClearAll,
+  IconSettings,
+  IconVolume,
+  IconVolumeOff,
+} from '@tabler/icons-react';
 import {
   MutableRefObject,
   memo,
@@ -29,10 +34,11 @@ import Spinner from '../Spinner';
 import { ChatInput } from './ChatInput';
 import { ChatLoader } from './ChatLoader';
 import { ErrorMessageDiv } from './ErrorMessageDiv';
+import { MemoizedChatMessage } from './MemoizedChatMessage';
 import { ModelSelect } from './ModelSelect';
 import { SystemPrompt } from './SystemPrompt';
 import { TemperatureSlider } from './Temperature';
-import { MemoizedChatMessage } from './MemoizedChatMessage';
+
 
 interface Props {
   stopConversationRef: MutableRefObject<boolean>;
@@ -283,6 +289,60 @@ export const Chat = memo(({ stopConversationRef }: Props) => {
   //     homeDispatch({ field: 'currentMessage', value: undefined });
   //   }
   // }, [currentMessage]);
+  
+  const [isAudioEnabled, setIsAudioEnabled] = useState(false);
+  const [lastSpokenIndex, setLastSpokenIndex] = useState(-1);
+  const [messageBuffer, setMessageBuffer] = useState('');
+
+  const speak = useCallback((message: any) => {
+    if (!("speechSynthesis" in window)) {
+      alert(
+        "Text-to-speech not supported in this browser. Please try another browser."
+      );
+      return;
+    }
+    const utterance = new SpeechSynthesisUtterance(message.content);
+    utterance.lang = "en-US";
+    speechSynthesis.speak(utterance);
+    setLastSpokenIndex(message.index);
+  }, []);
+
+  const toggleAudio = () => {
+    if (!isAudioEnabled) {
+      setIsAudioEnabled(true);
+    } else {
+      speechSynthesis.cancel();
+    }
+    setIsAudioEnabled(!isAudioEnabled);
+  };
+
+  useEffect(() => {
+    if (isAudioEnabled && selectedConversation) {
+      const messages = selectedConversation.messages;
+      const lastMessage = messages[messages.length - 1];
+
+      if (lastMessage.role === 'assistant' && messages.length - 1 !== lastSpokenIndex) {
+        if (messageIsStreaming) {
+          setMessageBuffer(lastMessage.content);
+        } else {
+          setTimeout(() => {
+            speak({ content: messageBuffer, index: messages.length - 1 });
+            setMessageBuffer('');
+          }, 1000);
+        }
+      }
+    }
+  }, [selectedConversation, isAudioEnabled, lastSpokenIndex, speak, messageIsStreaming]);
+
+  useEffect(() => {
+    const handleBeforeUnload = (event: any) => {
+      speechSynthesis.cancel(); // Cancel any ongoing speech synthesis
+    };
+    window.addEventListener('beforeunload', handleBeforeUnload);
+    return () => {
+      window.removeEventListener('beforeunload', handleBeforeUnload);
+    };
+  }, []);
 
   useEffect(() => {
     throttledScrollDown();
@@ -324,15 +384,14 @@ export const Chat = memo(({ stopConversationRef }: Props) => {
             Welcome to Chatbot UI
           </div>
           <div className="text-center text-lg text-black dark:text-white">
-            <div className="mb-8">{`Chatbot UI is an open source clone of OpenAI's ChatGPT UI.`}</div>
+            <div className="mb-8">{`YashAI is a powerful LLM model powered by GPT-4.`}</div>
             <div className="mb-2 font-bold">
-              Important: Chatbot UI is 100% unaffiliated with OpenAI.
+              Important: You need an access key to use YashAI.
             </div>
           </div>
           <div className="text-center text-gray-500 dark:text-gray-400">
             <div className="mb-2">
-              Chatbot UI allows you to plug in your API key to use this UI with
-              their API.
+              YashAI Allows you to have conversations with the YashAI v1.6 and GPT-4 Model.
             </div>
             <div className="mb-2">
               It is <span className="italic">only</span> used to communicate
@@ -340,11 +399,11 @@ export const Chat = memo(({ stopConversationRef }: Props) => {
             </div>
             <div className="mb-2">
               {t(
-                'Please set your OpenAI API key in the bottom left of the sidebar.',
+                'Please enter your YashAI Access Key in the bottom left of the sidebar.',
               )}
             </div>
             <div>
-              {t("If you don't have an OpenAI API key, you can get one here: ")}
+              {t("If you don't have a YashAI Key, you can contact the developer.")}
               <a
                 href="https://platform.openai.com/account/api-keys"
                 target="_blank"
