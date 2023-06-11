@@ -430,10 +430,10 @@ export const Chat = memo(({ stopConversationRef }: Props) => {
                   <div className="text-center text-3xl font-semibold text-gray-800 dark:text-gray-100">
                     {models.length === 0 ? (
                       <div>
-                        <Spinner size="16px" className="mx-auto" />
+                        <strong>YASH AI</strong>
                       </div>
                     ) : (
-                      'Chatbot UI'
+                      'YASH AI'
                     )}
                   </div>
 
