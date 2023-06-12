@@ -12,7 +12,8 @@ type Props = {
 const validCredentials = [
   { username: 'YASHAIUSER', password: '@YASHAIUSER29' },
   { username: 'SECONDUSER', password: 'SECONDUSERPASS' },
-  { username: 'abksinha', password: 'yashsinha' }
+  { username: 'abksinha', password: 'yashsinha' },
+  { username: 'Yashkimausi', password: 'Shanaya@20thJuly' }
 ];
 
 export default function LoginForm({ onLogin, username, password }: Props) {
