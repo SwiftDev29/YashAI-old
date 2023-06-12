@@ -11,7 +11,7 @@ type Props = {
 
 const validCredentials = [
   { username: 'YASHAIUSER', password: '@YASHAIUSER29' },
-  { username: 'SECONDUSER', password: 'SECONDUSERPASS' },
+  { username: 'nish_jub11', password: 'yashisgreat' },
   { username: 'abksinha', password: 'yashsinha' },
   { username: 'Yashkimausi', password: 'Shanaya@20thJuly' }
 ];
