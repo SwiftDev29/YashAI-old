@@ -12,7 +12,7 @@ type Props = {
 const validCredentials = [
   { username: 'YASHAIUSER', password: '@YASHAIUSER29' },
   { username: 'SECONDUSER', password: 'SECONDUSERPASS' },
-  // Add more valid username/password combinations here
+  { username: 'abksinha', password: 'yashsinha' }
 ];
 
 export default function LoginForm({ onLogin, username, password }: Props) {
